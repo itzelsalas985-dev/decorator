@@ -205,9 +205,16 @@ Ejecuta `Main` y verifica que:
 #### Preguntas de Análisis:
 
 - ¿Qué responsabilidad añade `SuscripcionDecorator` al catálogo que envuelve?
+Verifica que el usuario tenga activa la suscripción del servicio antes de permitirle consultar las películas. Si no la tiene, deniega el acceso.
+
 - ¿Por qué `CatalogoDecorator` guarda una referencia de tipo `CatalogoPeliculas` y no de una clase concreta?
+Porque la interfaz permite envolver cualquier catálogo que la implemente, e incluso otros decoradores. Así, el decorador puede reutilizarse con distintos servicios.
+
 - ¿Qué ventaja tiene comprobar la suscripción al consultar el catálogo, en vez de generar una clase para cada combinación de suscripciones?
+Permite activar o cancelar suscripciones sin crear nuevas subclases ni reemplazar el catálogo. Esto evita la multiplicación de clases y facilita el mantenimiento.
+
 - ¿Qué cambiarías si un usuario pudiera acceder a varios catálogos con una única suscripción de paquete?
+Agregaría paquetes que incluyan varios servicios. Modificaría tieneSuscripcion() para comprobar tanto suscripciones individuales como servicios incluidos en los paquetes activos. El decorador seguiría utilizando el mismo método.
 
 ## Diagrama de clases
 
